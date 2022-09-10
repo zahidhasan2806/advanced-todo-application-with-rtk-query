@@ -1,20 +1,27 @@
+import { useState } from "react";
 import cancelImage from "../assets/images/cancel.png";
 import editImage from '../assets/images/edit.png';
+import { useEditTodoMutation } from "../features/api/apiSlice";
+import Modal from "./Modal";
 
 
 
 export default function Todo({ todo }) {
+    const [editTodo] = useEditTodoMutation()
     const { id, text, completed, color } = todo;
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <div
             className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0"
         >
+            {showModal && <Modal setShowModal={setShowModal} todo={todo} />}
             <div
                 className={`relative cursor-pointer rounded-full bg-white border-2 ${completed ? "border-green-500" : "border-gray-400"} w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2`}
             >
                 <input
                     type="checkbox"
+                    onChange={() => editTodo({ id, data: { completed: !completed } })}
                     className="opacity-0 absolute rounded-full cursor-pointer"
 
                 />
@@ -34,6 +41,7 @@ export default function Todo({ todo }) {
 
             <div
                 className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-green-500 border-green-500 ${color === "green" && "bg-green-500"}`}
+                onClick={() => editTodo({ id, data: { color: "green" } })}
 
             >
             </div>
@@ -41,17 +49,19 @@ export default function Todo({ todo }) {
 
             <div
                 className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-yellow-500 border-yellow-500 ${color === "yellow" && "bg-yellow-500"}`}
-
+                onClick={() => editTodo({ id, data: { color: "yellow" } })}
             >
             </div>
 
             <div
                 className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer hover:bg-red-500 border-red-500 ${color === "red" && "bg-red-500"}`}
+                onClick={() => editTodo({ id, data: { color: "red" } })}
             >
             </div>
             <img
 
                 src={editImage}
+                onClick={() => setShowModal(true)}
                 className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
                 alt="Edit"
             />

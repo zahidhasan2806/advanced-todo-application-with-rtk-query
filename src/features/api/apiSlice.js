@@ -5,7 +5,7 @@ export const apiSlice = createApi({
         baseUrl: "https://think-in-redux-way-server.herokuapp.com",
 
     }),
-    tagTypes: ["Todos"],
+    tagTypes: ["Todos", "Todo"],
     endpoints: (builder) => ({
         getTodos: builder.query({
             query: () => "/todos",
@@ -24,9 +24,22 @@ export const apiSlice = createApi({
                 "Todos",
             ],
         }),
+        editTodo: builder.mutation({
+            query: ({ id, data }) => {
+                return {
+                    url: `/todos/${id}`,
+                    method: "PATCH",
+                    body: data
+                }
+            },
+            invalidatesTags: (result, error, arg) => [
+                "Todos",
+                { type: "Todo", id: arg.id },
+            ],
+        })
 
 
     })
 });
 
-export const { useGetTodosQuery, useAddTodoMutation } = apiSlice
+export const { useGetTodosQuery, useAddTodoMutation, useEditTodoMutation } = apiSlice
