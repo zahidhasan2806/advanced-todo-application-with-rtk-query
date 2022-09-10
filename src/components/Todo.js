@@ -1,13 +1,14 @@
 import { useState } from "react";
 import cancelImage from "../assets/images/cancel.png";
 import editImage from '../assets/images/edit.png';
-import { useEditTodoMutation } from "../features/api/apiSlice";
+import { useDeleteTodoMutation, useEditTodoMutation } from "../features/api/apiSlice";
 import Modal from "./Modal";
 
 
 
 export default function Todo({ todo }) {
-    const [editTodo] = useEditTodoMutation()
+    const [editTodo] = useEditTodoMutation();
+    const [delelteTodo] = useDeleteTodoMutation()
     const { id, text, completed, color } = todo;
     const [showModal, setShowModal] = useState(false);
 
@@ -70,6 +71,7 @@ export default function Todo({ todo }) {
                 src={cancelImage}
                 className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
                 alt="Cancel"
+                onClick={() => delelteTodo({ id })}
             />
         </div>
     );
