@@ -5,7 +5,16 @@ export const apiSlice = createApi({
         baseUrl: "https://think-in-redux-way-server.herokuapp.com",
 
     }),
+    tagTypes: ["Todos"],
     endpoints: (builder) => ({
+        getTodos: builder.query({
+            query: () => "/todos",
+            providesTags: (result, error, arg) => ["Todos"]
+
+        }),
+
 
     })
 });
+
+export const { useGetTodosQuery } = apiSlice
