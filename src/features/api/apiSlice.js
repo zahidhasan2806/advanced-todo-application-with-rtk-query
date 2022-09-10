@@ -48,9 +48,7 @@ export const apiSlice = createApi({
                 "Todos",
                 { type: "Todo", id: arg.id }
             ]
-        })
-
-
+        }),
     })
 });
 
