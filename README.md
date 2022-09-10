@@ -1,1 +1,1 @@
-Live Link: 
+Live Link: https://redux-toolkit-query-todoapp.netlify.app/
