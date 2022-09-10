@@ -1,56 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import CompletedTodos from './components/CompletedTodos';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import TodoList from './components/TodoList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="h-screen mt-8 pt-6 bg-blue-100 ">
+
+      <div className="mt-6 grid place-items-center  px-6 font-sans">
+        <Navbar />
+
+        <div className="w-full max-w-3xl shadow-lg rounded-lg p-6 bg-white">
+          <Header />
+
+          <hr className="mt-4" />
+
+          <TodoList />
+
+          <hr className="mt-4" />
+
+          <Footer />
+        </div>
+      </div>
+      <div className="grid place-items-center py-8  px-6 font-sans">
+        <div className="w-full max-w-3xl shadow-lg rounded-lg p-6 bg-white">
+          <h2 className="text-xl">Completed Todo List</h2>
+          <CompletedTodos />
+        </div>
+      </div>
     </div>
   );
 }
