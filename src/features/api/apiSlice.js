@@ -12,9 +12,21 @@ export const apiSlice = createApi({
             providesTags: (result, error, arg) => ["Todos"]
 
         }),
+        addTodo: builder.mutation({
+            query: ({ data }) => {
+                return {
+                    url: `/todos`,
+                    method: "POST",
+                    body: data,
+                };
+            },
+            invalidatesTags: (result, error, arg) => [
+                "Todos",
+            ],
+        }),
 
 
     })
 });
 
-export const { useGetTodosQuery } = apiSlice
+export const { useGetTodosQuery, useAddTodoMutation } = apiSlice

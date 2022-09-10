@@ -3,7 +3,6 @@ import { useGetTodosQuery } from "../features/api/apiSlice";
 export default function Footer() {
     const { data: todos } = useGetTodosQuery();
     const todosRemaining = todos?.filter((todo) => !todo.completed).length;
-    console.log(todos)
 
     const numberOfTodos = (no_of_todos) => {
         switch (no_of_todos) {
@@ -12,7 +11,7 @@ export default function Footer() {
             case 1:
                 return "1 task";
             default:
-                return `${no_of_todos} tasks`;
+                return `${no_of_todos} tasks jahid`;
         }
     };
 
